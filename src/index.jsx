@@ -77,6 +77,7 @@ const handleKeyDown = (event) => {
   // s - 83;
 
   // d - 68;
+
   // z - 90;
 
   // x - 88;
@@ -84,31 +85,31 @@ const handleKeyDown = (event) => {
   // c - 67;
   switch (event.keyCode) {
     case 81:
-      document.getElementById("0").play();
+      document.getElementById("Q").play();
       break;
     case 87:
-      document.getElementById("1").play();
+      document.getElementById("W").play();
       break;
     case 69:
-      document.getElementById("2").play();
+      document.getElementById("E").play();
       break;
     case 65:
-      document.getElementById("3").play();
+      document.getElementById("A").play();
       break;
     case 83:
-      document.getElementById("4").play();
+      document.getElementById("S").play();
       break;
     case 68:
-      document.getElementById("5").play();
+      document.getElementById("D").play();
       break;
     case 90:
-      document.getElementById("6").play();
+      document.getElementById("Z").play();
       break;
     case 88:
-      document.getElementById("7").play();
+      document.getElementById("X").play();
       break;
     case 67:
-      document.getElementById("8").play();
+      document.getElementById("C").play();
       break;
   }
 };
@@ -150,7 +151,7 @@ function DrumPad(props){
         const list = event.target.classList;
         list.remove("bg-gray-700");
         list.add("bg-rose-400");
-        const audio = document.getElementById(props.index);
+        const audio = document.getElementById(props.data.text);
         audio.play();
         props.changeDisplay(props.data.name);
         setTimeout(()=>{
@@ -161,11 +162,10 @@ function DrumPad(props){
 
     return (
       <div
-        className="drum-pad rounded-md text-center shadow bg-gray-700 h-20 w-20  flex  justify-center items-center	 cursor-pointer "
-        id={props.data.text}
+        className="drum pad rounded-md text-center shadow bg-gray-700 h-20 w-20  flex  justify-center items-center	 cursor-pointer "
         onClick={handleAudioPlayer}
       >
-        <audio id={props.index} src={props.data.audio}></audio>
+        <audio id={props.data.text} src={props.data.audio}></audio>
         {props.data.text}
       </div>
     );
