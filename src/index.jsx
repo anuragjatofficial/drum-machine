@@ -56,13 +56,70 @@ const drumData = [
     name: "RP4_KICK",
   },
 ];
-    const [displayText, setDisplayText] = React.useState(``);
+
+
+React.useEffect(() => {
+  window.addEventListener("keydown", handleKeyDown);
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, []);
+
+const handleKeyDown = (event) => {
+  // 81 - q;
+
+  // w - 87;
+
+  // e - 69;
+
+  // a - 65;
+
+  // s - 83;
+
+  // d - 68;
+  // z - 90;
+
+  // x - 88;
+
+  // c - 67;
+  switch (event.keyCode) {
+    case 81:
+      document.getElementById("0").play();
+      break;
+    case 87:
+      document.getElementById("1").play();
+      break;
+    case 69:
+      document.getElementById("2").play();
+      break;
+    case 65:
+      document.getElementById("3").play();
+      break;
+    case 83:
+      document.getElementById("4").play();
+      break;
+    case 68:
+      document.getElementById("5").play();
+      break;
+    case 90:
+      document.getElementById("6").play();
+      break;
+    case 88:
+      document.getElementById("7").play();
+      break;
+    case 67:
+      document.getElementById("8").play();
+      break;
+  }
+};
+
+    const [displayText, setDisplayText] = React.useState(` `);
     return (
       <div
         id="drum-machine"
-        className="w-2/5 bg-transparency flex m-auto justify-around"
+        className="w-2/5 bg-transparency flex m-auto rounded-lg justify-around p-5"
       >
-        <div className="grid grid-cols-3 w-4/5 gap-2 font-bold text-white">
+        <div className="grid grid-cols-3 w-1/2 gap-5 font-bold text-white">
           {drumData.map((e, i) => (
             <DrumPad
               data={e}
@@ -72,7 +129,15 @@ const drumData = [
             />
           ))}
         </div>
-        <div id="display">{displayText}</div>
+        <div id="display" className="text-center w-1/2">
+          <div className="flex h-full justify-center items-center">
+            <p className="bg-white px-3 py-2 text-lg rounded-md">
+              <i className="fa fa-music" aria-hidden="true"></i>
+              &nbsp;
+              {displayText}
+            </p>
+          </div>
+        </div>
       </div>
     );
 }
@@ -80,15 +145,23 @@ const drumData = [
 
 function DrumPad(props){
 
+    
     const handleAudioPlayer = event =>{
+        const list = event.target.classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
         const audio = document.getElementById(props.index);
         audio.play();
         props.changeDisplay(props.data.name);
+        setTimeout(()=>{
+            list.add("bg-gray-700");
+            list.remove("bg-rose-400");
+        },500);
     };
 
     return (
       <div
-        className="drum-pad rounded-sm text-center bg-blackish cursor-pointer"
+        className="drum-pad rounded-md text-center shadow bg-gray-700 h-20 w-20  flex  justify-center items-center	 cursor-pointer "
         id={props.data.text}
         onClick={handleAudioPlayer}
       >
