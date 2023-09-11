@@ -1,9 +1,9 @@
 function App() {
   return (
-    <div>
-        <DrumMachine/>
+    <div className="bg-gradient-to-tl  from-pink to-blue flex" style={{height:'100vh'}}>
+      <DrumMachine />
     </div>
-  )
+  );
 }
 
 
@@ -13,55 +13,86 @@ const drumData = [
   {
     audio: "./audios/Cev_H2.mp3",
     text: "Q",
+    name: "CEV-h2",
   },
   {
     audio: "./audios/Dsc_Oh.mp3",
     text: "W",
+    name: "DSC-Oh!",
   },
   {
     audio: "./audios/Heater-1.mp3",
     text: "E",
+    name: "Heater-1",
   },
   {
     audio: "./audios/Heater-2.mp3",
     text: "A",
+    name: "Heater-2",
   },
   {
     audio: "./audios/Heater-3.mp3",
     text: "S",
+    name: "Heater-3",
   },
   {
     audio: "./audios/Heater-4_1.mp3",
     text: "D",
+    name: "Heater-4",
   },
   {
     audio: "./audios/Heater-6.mp3",
     text: "Z",
+    name: "Heater-6",
   },
   {
     audio: "./audios/Kick_n_Hat.mp3",
     text: "X",
+    name: "Kick & Hat",
   },
   {
     audio: "./audios/RP4_KICK_1.mp3",
     text: "C",
+    name: "RP4_KICK",
   },
 ];
+    const [displayText, setDisplayText] = React.useState(``);
     return (
-      <div id="drum-machine">
-        <div id="display"></div>
-        {drumData.map((e,i) => (
-          <DrumPad data={e} key={i}/>
-        ))}
+      <div
+        id="drum-machine"
+        className="w-2/5 bg-transparency flex m-auto justify-around"
+      >
+        <div className="grid grid-cols-3 w-4/5 gap-2 font-bold text-white">
+          {drumData.map((e, i) => (
+            <DrumPad
+              data={e}
+              key={i.toString()}
+              index={i}
+              changeDisplay={setDisplayText}
+            />
+          ))}
+        </div>
+        <div id="display">{displayText}</div>
       </div>
     );
 }
 
 
 function DrumPad(props){
+
+    const handleAudioPlayer = event =>{
+        const audio = document.getElementById(props.index);
+        audio.play();
+        props.changeDisplay(props.data.name);
+    };
+
     return (
-      <div className="drum-pad">
-        <audio src={props.data.audio}></audio>
+      <div
+        className="drum-pad rounded-sm text-center bg-blackish cursor-pointer"
+        id={props.data.text}
+        onClick={handleAudioPlayer}
+      >
+        <audio id={props.index} src={props.data.audio}></audio>
         {props.data.text}
       </div>
     );
