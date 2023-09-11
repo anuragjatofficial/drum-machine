@@ -8,113 +8,126 @@ function App() {
 
 
 function DrumMachine(){
-    
-const drumData = [
-  {
-    audio: "./audios/Cev_H2.mp3",
-    text: "Q",
-    name: "CEV-h2",
-  },
-  {
-    audio: "./audios/Dsc_Oh.mp3",
-    text: "W",
-    name: "DSC-Oh!",
-  },
-  {
-    audio: "./audios/Heater-1.mp3",
-    text: "E",
-    name: "Heater-1",
-  },
-  {
-    audio: "./audios/Heater-2.mp3",
-    text: "A",
-    name: "Heater-2",
-  },
-  {
-    audio: "./audios/Heater-3.mp3",
-    text: "S",
-    name: "Heater-3",
-  },
-  {
-    audio: "./audios/Heater-4_1.mp3",
-    text: "D",
-    name: "Heater-4",
-  },
-  {
-    audio: "./audios/Heater-6.mp3",
-    text: "Z",
-    name: "Heater-6",
-  },
-  {
-    audio: "./audios/Kick_n_Hat.mp3",
-    text: "X",
-    name: "Kick & Hat",
-  },
-  {
-    audio: "./audios/RP4_KICK_1.mp3",
-    text: "C",
-    name: "RP4_KICK",
-  },
-];
+
+  const [displayText, setDisplayText] = React.useState(`Play music `);
+  const drumData = [
+    {
+      audio: "./audios/Cev_H2.mp3",
+      text: "Q",
+      name: "CEV-h2",
+    },
+    {
+      audio: "./audios/Dsc_Oh.mp3",
+      text: "W",
+      name: "DSC-Oh!",
+    },
+    {
+      audio: "./audios/Heater-1.mp3",
+      text: "E",
+      name: "Heater-1",
+    },
+    {
+      audio: "./audios/Heater-2.mp3",
+      text: "A",
+      name: "Heater-2",
+    },
+    {
+      audio: "./audios/Heater-3.mp3",
+      text: "S",
+      name: "Heater-3",
+    },
+    {
+      audio: "./audios/Heater-4_1.mp3",
+      text: "D",
+      name: "Heater-4",
+    },
+    {
+      audio: "./audios/Heater-6.mp3",
+      text: "Z",
+      name: "Heater-6",
+    },
+    {
+      audio: "./audios/Kick_n_Hat.mp3",
+      text: "X",
+      name: "Kick & Hat",
+    },
+    {
+      audio: "./audios/RP4_KICK_1.mp3",
+      text: "C",
+      name: "RP4_KICK",
+    },
+  ];
 
 
-React.useEffect(() => {
-  window.addEventListener("keydown", handleKeyDown);
-  return () => {
-    window.removeEventListener("keydown", handleKeyDown);
+  React.useEffect(() => {
+
+  
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const handleKeyDown = (event) => {
+    // 81 - q;
+
+    // w - 87;
+
+    // e - 69;
+
+    // a - 65;
+
+    // s - 83;
+
+    // d - 68;
+
+    // z - 90;
+
+    // x - 88;
+
+    // c - 67;
+    switch (event.keyCode) {
+      case 81:
+        document.getElementById("Q").play();
+        setDisplayText(drumData[0].name);
+        break;
+      case 87:
+        document.getElementById("W").play();
+        setDisplayText(drumData[1].name);
+        break;
+      case 69:
+        document.getElementById("E").play();
+        setDisplayText(drumData[2].name);
+        break;
+      case 65:
+        document.getElementById("A").play();
+        setDisplayText(drumData[3].name);
+        break;
+      case 83:
+        document.getElementById("S").play();
+        setDisplayText(drumData[4].name);
+        break;
+      case 68:
+        document.getElementById("D").play();
+        setDisplayText(drumData[5].name);
+        break;
+      case 90:
+        document.getElementById("Z").play();
+        setDisplayText(drumData[6].name);
+        break;
+      case 88:
+        document.getElementById("X").play();
+        setDisplayText(drumData[7].name);
+        break;
+      case 67:
+        document.getElementById("C").play();
+        setDisplayText(drumData[8].name);
+        break;
+    }
   };
-}, []);
 
-const handleKeyDown = (event) => {
-  // 81 - q;
 
-  // w - 87;
-
-  // e - 69;
-
-  // a - 65;
-
-  // s - 83;
-
-  // d - 68;
-
-  // z - 90;
-
-  // x - 88;
-
-  // c - 67;
-  switch (event.keyCode) {
-    case 81:
-      document.getElementById("Q").play();
-      break;
-    case 87:
-      document.getElementById("W").play();
-      break;
-    case 69:
-      document.getElementById("E").play();
-      break;
-    case 65:
-      document.getElementById("A").play();
-      break;
-    case 83:
-      document.getElementById("S").play();
-      break;
-    case 68:
-      document.getElementById("D").play();
-      break;
-    case 90:
-      document.getElementById("Z").play();
-      break;
-    case 88:
-      document.getElementById("X").play();
-      break;
-    case 67:
-      document.getElementById("C").play();
-      break;
-  }
-};
-
-    const [displayText, setDisplayText] = React.useState(` `);
     return (
       <div
         id="drum-machine"
@@ -164,6 +177,7 @@ function DrumPad(props){
       <div
         className="drum pad rounded-md text-center shadow bg-gray-700 h-20 w-20  flex  justify-center items-center	 cursor-pointer "
         onClick={handleAudioPlayer}
+        id={props.data.name}
       >
         <audio id={props.data.text} src={props.data.audio}></audio>
         {props.data.text}
