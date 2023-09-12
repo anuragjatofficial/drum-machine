@@ -49,7 +49,7 @@ function DrumMachine(){
     {
       audio: "./audios/Kick_n_Hat.mp3",
       text: "X",
-      name: "Kick & Hat",
+      name: "Kick_&_Hat",
     },
     {
       audio: "./audios/RP4_KICK_1.mp3",
@@ -87,42 +87,108 @@ function DrumMachine(){
     // x - 88;
 
     // c - 67;
+    console.log("you clicked " +event.keyCode);
+    let list;
     switch (event.keyCode) {
+      
       case 81:
         document.getElementById("Q").play();
         setDisplayText(drumData[0].name);
+        list = document.getElementById("CEV-h2").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(()=>{
+            list.add("bg-gray-700");
+            list.remove("bg-rose-400");
+        },500);
         break;
       case 87:
         document.getElementById("W").play();
         setDisplayText(drumData[1].name);
+        list = document.getElementById("DSC-Oh!").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
       case 69:
         document.getElementById("E").play();
         setDisplayText(drumData[2].name);
+        list = document.getElementById("Heater-1").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
       case 65:
         document.getElementById("A").play();
         setDisplayText(drumData[3].name);
+        list = document.getElementById("Heater-2").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
       case 83:
         document.getElementById("S").play();
         setDisplayText(drumData[4].name);
+        list = document.getElementById("Heater-3").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
       case 68:
         document.getElementById("D").play();
         setDisplayText(drumData[5].name);
+        list = document.getElementById("Heater-4").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
       case 90:
         document.getElementById("Z").play();
         setDisplayText(drumData[6].name);
+        list = document.getElementById("Heater-6").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
       case 88:
         document.getElementById("X").play();
         setDisplayText(drumData[7].name);
+        list = document.getElementById("Kick_&_Hat").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
       case 67:
         document.getElementById("C").play();
         setDisplayText(drumData[8].name);
+        list = document.getElementById("RP4_KICK").classList;
+        list.remove("bg-gray-700");
+        list.add("bg-rose-400");
+        setTimeout(() => {
+          list.add("bg-gray-700");
+          list.remove("bg-rose-400");
+        }, 500);
         break;
     }
   };
@@ -131,7 +197,7 @@ function DrumMachine(){
     return (
       <div
         id="drum-machine"
-        className="w-2/5 bg-transparency flex m-auto rounded-lg justify-around p-5"
+        className="md:w-2/5 w-full bg-transparency flex m-auto rounded-lg justify-around p-5"
       >
         <div className="grid grid-cols-3 w-1/2 gap-5 font-bold text-white">
           {drumData.map((e, i) => (
